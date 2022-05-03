@@ -18,9 +18,11 @@ const axios = require("axios")
 // *********************************************************** //
 //  Loading models
 // *********************************************************** //
-const ToDoItem = require("./models/ToDoItem")
-const Course = require('./models/Course')
-const Schedule = require('./models/Schedule')
+// const ToDoItem = require("./models/ToDoItem")
+// const Course = require('./models/Course')
+// const Schedule = require('./models/Schedule')
+const Food = require("./models/Food")
+const FoodItem = require("./models/FoodItem")
 
 // *********************************************************** //
 //  Loading JSON datasets
