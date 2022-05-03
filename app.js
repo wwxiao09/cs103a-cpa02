@@ -25,7 +25,7 @@ const Schedule = require('./models/Schedule')
 // *********************************************************** //
 //  Loading JSON datasets
 // *********************************************************** //
-const courses = require('./public/data/courses20-21.json')
+const courses = require('./public/data/foods.json')
 
 
 // *********************************************************** //
@@ -127,6 +127,20 @@ app.get('/todo',
       let items = await ToDoItem.find({ userId: userId }); // lookup the user's todo items
       res.locals.items = items;  //make the items available in the view
       res.render("toDo");  // render to the toDo page
+    } catch (e) {
+      next(e);
+    }
+  }
+)
+
+app.get('/toEat',
+  isLoggedIn,   // redirect to /login if user is not logged in
+  async (req, res, next) => {
+    try {
+      let userId = res.locals.user._id;  // get the user's id
+      let items = await ToDoItem.find({ userId: userId }); // lookup the user's todo items
+      res.locals.items = items;  //make the items available in the view
+      res.render("toEat");  // render to the toDo page
     } catch (e) {
       next(e);
     }
@@ -254,6 +268,29 @@ app.get('/upsertDB',
   }
 )
 
+app.get('/food/byRest/:restaurant',
+  // show all info about a course given its courseid
+  async (req, res, next) => {
+    const { restaurant } = req.params;
+    const foods = await Food.findOne({ restaurant: restaurant })
+    res.locals.foods = foods
+    // res.locals.times2str = times2str
+    //res.json(course)
+    res.render('food')
+  }
+)
+
+app.post('/food/byRest',
+  // show list of courses in a given subject
+  async (req, res, next) => {
+    const { restaurant } = req.params;
+    const foods = await Food.findOne({ restaurant: restaurant })
+    res.locals.foods = foods
+    // res.locals.times2str = times2str
+    //res.json(course)
+    res.render('food')
+  }
+)
 
 app.post('/courses/bySubject',
   // show list of courses in a given subject
@@ -268,16 +305,6 @@ app.post('/courses/bySubject',
   }
 )
 
-// function isKey(courses, key) {
-//   const c = []
-//   for (course of courses) {
-//     const name = course.name
-//     if (name.includes(key)) {
-//       c.push(course)
-//     }
-//   }
-//   return c
-// }
 app.post('/courses/byKey',
   // show list of courses that have the given keyword in their course name
   async (req, res, next) => {
