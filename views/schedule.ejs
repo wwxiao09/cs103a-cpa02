@@ -1,0 +1,23 @@
+
+<div class="d-flex flex-wrap overflow-scroll">
+    <% for (course of courses) {%>
+        <div class="p-3 m-3 border border-primary bg-light">
+            <p class="h2 text-center"><a href="/courses/show/<%= course['_id'] %> "><%= course['subject'] %><%= course.coursenum %></a></p>
+            <p><span class="fw-bold">Course name</span><span>: <%= course.name %></span></p>
+            <p><span class="fw-bold">Instructor</span><span>: <%= course.instructor[0] %> <%= course.instructor[1] %></span></p>
+            <p><span class="fw-bold">Term</span><span>: <%= course.term %></span></p>
+            <p><span class="fw-bold">Meeting times</span><span>: </span>
+                <ul class="text-capitalize">
+                    <% for (time of course.strTimes) {%>
+                        <li><%= time %></li>
+                    <% } %> 
+                </ul>
+            </p>
+        </div>
+    <% }%>
+    </div>
+<!--
+    <pre>
+        <%= JSON.stringify(courses,null,5) %>
+    </pre>
+-->
