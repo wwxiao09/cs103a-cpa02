@@ -27,7 +27,7 @@ const FoodItem = require("./models/DressingItem")
 // *********************************************************** //
 //  Loading JSON datasets
 // *********************************************************** //
-const courses = require('./public/data/foods.json')
+const courses = require('./public/data/dressings.json')
 
 
 // *********************************************************** //
@@ -142,7 +142,7 @@ app.get('/toEat',
       let userId = res.locals.user._id;  // get the user's id
       let items = await ToDoItem.find({ userId: userId }); // lookup the user's todo items
       res.locals.items = items;  //make the items available in the view
-      res.render("toEat");  // render to the toDo page
+      res.render("toDo");  // render to the toDo page
     } catch (e) {
       next(e);
     }
@@ -248,49 +248,86 @@ function time2str(time) {
 // this route loads in the courses into the Course collection
 // or updates the courses if it is not a new collection
 
+// app.get('/upsertDB',
+//   async (req, res, next) => {
+//     //await Course.deleteMany({})
+//     for (course of courses) {
+//       const { subject, coursenum, section, term } = course;
+//       const num = getNum(coursenum);
+//       const t = times;
+//       course.num = num
+//       course.suffix = coursenum.slice(num.length)
+//       if (!t || t.length == 0) {
+//         course.strTimes = ["not scheduled"]
+//       }
+//       else {
+//         course.strTimes = t.map(x => time2str(x))
+//       }
+//       await Course.findOneAndUpdate({ subject, coursenum, section, term }, course, { upsert: true })
+//     }
+//     const num = await Course.find({}).count();
+//     res.send("data uploaded: " + num)
+//   }
+// )
+
 app.get('/upsertDB',
-  async (req, res, next) => {
-    //await Course.deleteMany({})
-    for (course of courses) {
-      const { subject, coursenum, section, term } = course;
-      const num = getNum(coursenum);
-      const t = times;
-      course.num = num
-      course.suffix = coursenum.slice(num.length)
-      if (!t || t.length == 0) {
-        course.strTimes = ["not scheduled"]
-      }
-      else {
-        course.strTimes = t.map(x => time2str(x))
-      }
-      await Course.findOneAndUpdate({ subject, coursenum, section, term }, course, { upsert: true })
+  async (req,res,next) => {
+    await Dressing.deleteMany({})
+    for (dressing of dressings){ 
+      const {dressingName,calories,carbs,restaurantName}= dressing;
+    
+      await Dressing.findOneAndUpdate({dressingName,calories,carbs,restaurantName},dressing,{upsert:true})
     }
-    const num = await Course.find({}).count();
-    res.send("data uploaded: " + num)
+    const num = await Dressing.find({}).countDocuments();
+    res.send("data uploaded: "+num)
   }
 )
 
-app.get('/food/byRest/:restaurant',
+app.get('/dressings/byName/:name',
   // show all info about a course given its courseid
   async (req, res, next) => {
-    const { restaurant } = req.params;
-    const foods = await Food.findOne({ restaurant: restaurant })
-    res.locals.foods = foods
+    const { dressingName } = req.body;
+    const dressings = await Dressing.findOne({ dressingName: dressingName })
+    res.locals.dressings = dressings
     // res.locals.times2str = times2str
     //res.json(course)
-    res.render('food')
+    res.render('Dressing')
   }
 )
 
-app.post('/food/byRest',
-  // show list of courses in a given subject
+app.post('/dressings/byName',
+  // show all info about a course given its courseid
   async (req, res, next) => {
-    const { restaurant } = req.params;
-    const foods = await Food.findOne({ restaurant: restaurant })
-    res.locals.foods = foods
+    const { dressingName } = req.body;
+    const dressings = await Dressing.findOne({ dressingName: dressingName })
+    res.locals.dressings = dressings
     // res.locals.times2str = times2str
     //res.json(course)
-    res.render('food')
+    res.render('Dressing')
+  }
+)
+
+app.get('/dressings/byRest/:rest',
+  // show all info about a course given its courseid
+  async (req, res, next) => {
+    const { restaurantName } = req.body;
+    const dressings = await Dressing.findOne({ restaurantName: restaurantName })
+    res.locals.dressings = dressings
+    // res.locals.times2str = times2str
+    //res.json(course)
+    res.render('Dressing')
+  }
+)
+
+app.post('/dressings/byRest',
+  // show all info about a course given its courseid
+  async (req, res, next) => {
+    const { restaurantName } = req.body;
+    const dressings = await Dressing.findOne({ restaurantName: restaurantName })
+    res.locals.dressings = dressings
+    // res.locals.times2str = times2str
+    //res.json(course)
+    res.render('Dressing')
   }
 )
 

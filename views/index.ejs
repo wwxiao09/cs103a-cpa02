@@ -11,17 +11,17 @@
     </p>
     
     <% if (true || loggedIn) {%>  
-        <form method="post" action="/food/byRest">
-            Show Food by Restaurant names: 
-              <input type="text" name="subject" 
-                     placeholder="e.g. Chipotle">
+        <form method="post" action="/dressings/byName">
+            Show Dressings by Dressing names: 
+              <input type="text" name="dressingName" 
+                     placeholder="e.g. Ranch">
             <input type="submit">
         </form>
         <br>
-        <form method="post" action="/courses/byInst">
-            Show Courses by Instructor Email: 
-            <input type="text" name="email" 
-                   placeholder="e.g. tjhickey">
+        <form method="post" action="/dressings/byRest">
+            Show Dressings by Dressing names: 
+            <input type="text" name="restaurantName" 
+                   placeholder="e.g. McDonalds">
             <input type="submit">
         </form>
         <br>
