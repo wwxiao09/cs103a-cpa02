@@ -1,0 +1,31 @@
+<h1>The following food were found: </h1>
+
+<hr>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>DressingName</th>
+            <th>Calories</th>
+            <th>Carbs</th>
+            <th>RestaurantNames</th>
+            <th>Add to Dressing List</th>
+        
+        </tr>
+    </thead>
+    <tbody>
+        <% for (dressing of dressings){ %>
+            <tr>
+                <td><%= dressing['dressingName'] %> </td>
+                <td><%= dressing['calories'] %></td>
+                <td><%= dressing['carbs'] %></td>
+                <td><%= dressing['restaurantName'] %></td>
+                <td> <div><a href="/addDressing/<%= dressing['_id'] %>">add Dressing</a></div></td>
+             
+            </tr>
+        <% } %>
+        </tbody>
+    
+
+
+    
+</table>

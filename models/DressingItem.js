@@ -3,9 +3,9 @@ const mongoose = require( 'mongoose' );
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
-var FoodItemSchema = Schema( {
+var DressingItemSchema = Schema( {
   userId: ObjectId,
-  restaurantID: ObjectId,
+  dressingID: ObjectId,
 } );
 
-module.exports = mongoose.model( 'FoodItem', FoodItemSchema);
+module.exports = mongoose.model( 'DressingItem', DressingItemSchema);
