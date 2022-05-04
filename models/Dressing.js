@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 const Mixed = Schema.Types.Mixed;
 
-var foodSchema = Schema( {
-    restaurant: String,
-    foodName: String,
-    foodType: String,
+var dressingSchema = Schema( {
+    dressingName: String,
     calories: Number,
+    carbs: Number,
+    restaurantName: Mixed,
 } );
 
-module.exports = mongoose.model( 'Food', foodSchema );
+module.exports = mongoose.model( 'Dressing', dressingSchema );
