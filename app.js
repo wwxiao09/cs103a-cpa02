@@ -21,13 +21,13 @@ const axios = require("axios")
 // const ToDoItem = require("./models/ToDoItem")
 // const Course = require('./models/Course')
 // const Schedule = require('./models/Schedule')
-const Food = require("./models/Dressing")
-const FoodItem = require("./models/DressingItem")
+const Dressing = require("./models/Dressing")
+const DressingItem = require("./models/DressingItem")
 
 // *********************************************************** //
 //  Loading JSON datasets
 // *********************************************************** //
-const courses = require('./public/data/dressings.json')
+const dressings = require('./public/data/dressings.json')
 
 
 // *********************************************************** //
@@ -283,7 +283,7 @@ app.get('/upsertDB',
   }
 )
 
-app.get('/dressings/byName/:name',
+app.get('/dressings/byName',
   // show all info about a course given its courseid
   async (req, res, next) => {
     const { dressingName } = req.body;
@@ -291,7 +291,7 @@ app.get('/dressings/byName/:name',
     res.locals.dressings = dressings
     // res.locals.times2str = times2str
     //res.json(course)
-    res.render('Dressing')
+    res.render('dressinglist')
   }
 )
 
@@ -303,7 +303,7 @@ app.post('/dressings/byName',
     res.locals.dressings = dressings
     // res.locals.times2str = times2str
     //res.json(course)
-    res.render('Dressing')
+    res.render('dressinglist')
   }
 )
 
@@ -315,7 +315,7 @@ app.get('/dressings/byRest/:rest',
     res.locals.dressings = dressings
     // res.locals.times2str = times2str
     //res.json(course)
-    res.render('Dressing')
+    res.render('dressinglist')
   }
 )
 
@@ -327,7 +327,7 @@ app.post('/dressings/byRest',
     res.locals.dressings = dressings
     // res.locals.times2str = times2str
     //res.json(course)
-    res.render('Dressing')
+    res.render('dressinglist')
   }
 )
 
@@ -415,6 +415,55 @@ app.get('/addCourse/:courseId',
       next(e)
     }
   })
+
+
+  app.get('/addDressing/:dressingId',
+  // add a course to the user's schedule
+  async (req,res,next) => {
+    try {
+      const dressingId = req.params.dressingId
+      const userId = res.locals.user._id
+      // check to make sure it's not already loaded
+      const lookup = await DressingItem.find({dressingId,userId})
+      if (lookup.length==0){
+        const dressingItem = new DressingItem({dressingId,userId})
+        await dressingItem.save()
+      }
+      res.redirect('/DressingItem/show')
+    } catch(e){
+      next(e)
+    }
+  })
+  app.get('/DressingItem/show',
+  // show the current user's schedule
+  async (req,res,next) => {
+    try{
+      const userId = res.locals.user._id;
+      const dressingIds = 
+         (await DressingItem.find({userId}))
+                        .map(x => x.dressingId)
+      res.locals.dressings = await Dressing.find({_id:{$in: dressingIds}})
+      res.render('eatlist')
+    } catch(e){
+      next(e)
+    }
+  }
+)
+
+app.get('/DressingItem/remove/:dressingId',
+  // remove a course from the user's schedule
+  async (req,res,next) => {
+    try {
+      await DressingItem.remove(
+                {userId:res.locals.user._id,
+                 dressingId:req.params.dressingId})
+      res.redirect('/DressingItem/show')
+
+    } catch(e){
+      next(e)
+    }
+  }
+)
 
 app.get('/schedule/show',
   // show the current user's schedule
