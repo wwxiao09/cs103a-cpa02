@@ -1,0 +1,14 @@
+<div class="bg-light border border-primary p-3 rounded m-3">
+    <h1 class="display-4 text-center">Dressing List</h1>
+    
+</div>
+<ul>
+    <% for (dressing of dressings){%>
+        <li> 
+            
+            <%= dressing['dressingName'] %>
+            <a href="/DressingItem/remove/<%= dressing._id %>">Remove</a>
+            
+        </li>
+    <% } %>
+</ul>

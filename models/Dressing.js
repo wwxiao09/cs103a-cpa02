@@ -8,7 +8,7 @@ var dressingSchema = Schema( {
     dressingName: String,
     calories: Number,
     carbs: Number,
-    restaurantName: Mixed,
+    restaurantNames: Mixed,
 } );
 
 module.exports = mongoose.model( 'Dressing', dressingSchema );

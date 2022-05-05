@@ -5,7 +5,7 @@ const ObjectId = Schema.Types.ObjectId;
 
 var DressingItemSchema = Schema( {
   userId: ObjectId,
-  dressingID: ObjectId,
+  dressingId: ObjectId,
 } );
 
 module.exports = mongoose.model( 'DressingItem', DressingItemSchema);

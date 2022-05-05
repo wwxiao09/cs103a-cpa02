@@ -19,20 +19,67 @@
         </form>
         <br>
         <form method="post" action="/dressings/byRest">
-            Show Dressings by Dressing names: 
-            <input type="text" name="restaurantName" 
+            Show Dressings by Restaurant names: 
+            <input type="text" name="restaurantNames" 
                    placeholder="e.g. McDonalds">
             <input type="submit">
         </form>
         <br>
-        <form method="post" action="/courses/byKey">
-            Show Courses by Keyword in course name: 
-            <input type="text" name="keyword" 
-                   placeholder="e.g. Introduction">
+        <form method="post" action="/dressings/byCalories">
+            Show Dressings by Calories: 
+            <input type="text" name="calories" 
+                   placeholder="e.g. 50">
             <input type="submit">
         </form>
         <br>
         <a href="/DressingItem/show">Show dressing lists</a>
     <% } %>
+
+    
+<!-- <br>
+<br>
+    <div class="jumbotron">
+        <h1 class="text-center">Movie Database: Find Your Favorite Movies! </h1>
+        <p></p>
+    </div>
+
+    <p class="p-3 m-3 border border-warning bg-light">
+        This app will allow users to filter through a wide range of movies released from 1900 to 2018. 
+        Users will be able to search for movies based on genre, actors/actresses, keywords in the movie title, and release year. 
+        Users can also add movies that were searched up in a watch list that they can access at any time. 
+    </p>
+    
+    <% if (true || loggedIn) {%>  
+        <form method="post" action="/movies/byGenre">
+            Find Movies by Genre: 
+              <input type="text" name="genre" 
+                     placeholder="e.g. Crime">
+            <input type="submit">
+        </form>
+        <br>
+        <form method="post" action="/movies/byCast">
+            Find Movies by Actor/Actress: 
+            <input type="text" name="cast" 
+                   placeholder="e.g. Betty White">
+            <input type="submit">
+        </form>
+        <br>
+        <form method="post" action="/movies/byKey">
+            Find Movies by Keyword in Title: 
+            <input type="text" name="keyword" 
+                   placeholder="e.g. Letter">
+            <input type="submit">
+        </form>
+        <br>
+        <form method="post" action="/movies/byYear">
+            Find Movies by Year: 
+            <input type="text" name="year" 
+                   placeholder="e.g. 2015">
+            <input type="submit">
+        </form>
+        <br>
+        <a href="/watchListItem/show">My Movie Watch List</a>
+    <% } %> -->
+
 
 
