@@ -339,7 +339,7 @@ app.post('/dressings/byCalories',
   // show all info about a course given its courseid
   async (req, res, next) => {
     const { calories } = req.body;
-    const dressings = await Dressing.find({ calories: calories })
+    const dressings = await Dressing.find({ calories: {$lte: calories} }).sort({calories:"desc"})
     res.locals.dressings = dressings
     // res.locals.times2str = times2str
     //res.json(course)
