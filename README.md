@@ -6,8 +6,8 @@ Heroku link: https://aqueous-tor-83065.herokuapp.com/
 
 ## How to use
 
-<img src="images/1.jpg">
-<img src="images/2.jpg">
-<img src="images/3.jpg">
-<img src="images/4.jpg">
-<img src="images/5.jpg">
+<img src="public/images/1.jpg">
+<img src="public/images/2.jpg">
+<img src="public/images/3.jpg">
+<img src="public/images/4.jpg">
+<img src="public/images/5.jpg">
