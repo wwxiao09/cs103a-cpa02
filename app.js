@@ -37,6 +37,7 @@ const dressings = require('./public/data/dressings.json')
 // *********************************************************** //
 
 const mongoose = require('mongoose');
+// const mongodb_URI = process.env.mongodb_URI
 // const mongodb_URI = 'mongodb://localhost:27017/cs103a_todo'
 // const mongodb_URI = 'mongodb+srv://cs_sj:BrandeisSpr22@cluster0.kgugl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 const mongodb_URI = 'mongodb+srv://wwx09:tilly0421@cluster0.bbzwu.mongodb.net/test'
