@@ -11,22 +11,22 @@ This is the main page of the app:
 where you can find dressings by dressing's name, restaurant's name, or calories.
 Click the Login/Signup button to log in and create your own dressing list!
 
-"—————————————————————————————————————————————————————————————————————————————————————————————"
+———————————————————————————————————————————————————
 This is the result of dressing lists when you search by dressing's name "Ranch":
 <img src="public/images/2.jpg">
 Click "add Dressing" to add to your dressing list.
 
-"—————————————————————————————————————————————————————————————————————————————————————————————"
+———————————————————————————————————————————————————
 This is the result of dressing lists when you search by restaurant's name "McDonalds":
 <img src="public/images/3.jpg">
 Click "add Dressing" to add to your dressing list.
 
-"—————————————————————————————————————————————————————————————————————————————————————————————"
+———————————————————————————————————————————————————
 This is the result of dressing lists when you search by calories amount 50 (it will show all dresings whose calories are equal or lower than 50):
 <img src="public/images/4.jpg">
 Click "add Dressing" to add to your dressing list.
 
-"—————————————————————————————————————————————————————————————————————————————————————————————"
+———————————————————————————————————————————————————
 This is the Dressing List page, where you can see the dressings you add to the list. You can also click "Remove" to remove the dressing.
 <img src="public/images/5.jpg">
 
